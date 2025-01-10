@@ -26,6 +26,6 @@
     "@auth/prisma-adapter": "^2.7.4",
     "@prisma/client": "^6.2.1",
     "bcrypt": "^5.1.1",
-    "next-auth": "^5.0.0-beta.25"
+    "next-auth": "^4.24.11"
   }
 }

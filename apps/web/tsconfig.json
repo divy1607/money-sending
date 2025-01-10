@@ -1,11 +1,18 @@
 {
   "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
+    "typeRoots": ["./types", "./node_modules/@types"],
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": ".", // Define the base directory for relative imports
+    "paths": {
+      "@/*": ["./app/*"], // Example alias: @/ points to the ./app directory
+      "@components/*": ["./app/components/*"], // Alias for components folder
+      "@lib/*": ["./app/lib/*"] // Alias for lib folder
+    }
   },
   "include": [
     "**/*.ts",

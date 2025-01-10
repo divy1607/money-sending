@@ -1,4 +1,3 @@
-// lib/auth.ts
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
@@ -45,6 +44,23 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: '/login'
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        // Add username and balance to the JWT token
+        token.username = user.username
+        token.balance = user.balance
+      }
+      return token
+    },
+    async session({ session, token }) {
+      if (token) {
+        // Add username and balance from the token to the session
+        session.user.username = token.username as string
+        session.user.balance = token.balance as number
+      }
+      return session
+    }
   }
-  // We'll remove the callbacks for now to fix the errors
 }
